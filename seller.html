@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Dashboard - Shop Leblanc</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="container">
+        <header class="top-bar">
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <div class="brand">
+                <h2>Shop Leblanc (Seller Panel)</h2>
+            </div>
+        </header>
+
+        <aside id="sidebar" class="sidebar">
+            <div class="menu-group">
+                <p class="menu-title">Main Navigation</p>
+                <button class="menu-btn active" onclick="setActive(this); showPage('seller-home')">
+                    <span class="icon">📊</span>
+                    <span class="label">Dashboard</span>
+                </button>
+                <button class="menu-btn" onclick="setActive(this); showPage('manage-products')">
+                    <span class="icon">📦</span>
+                    <span class="label">Manage Products</span>
+                </button>
+                <button class="menu-btn" onclick="setActive(this); showPage('add-product')">
+                    <span class="icon">➕</span>
+                    <span class="label">Add Product</span>
+                </button>
+            </div>
+
+            <div class="menu-group">
+                <p class="menu-title">Sales & Orders</p>
+                <button class="menu-btn" onclick="setActive(this); showPage('seller-orders')">
+                    <span class="icon">📜</span>
+                    <span class="label">Orders</span>
+                </button>
+            </div>
+
+            <div class="menu-group">
+                <p class="menu-title">Account</p>
+                <button class="menu-btn" onclick="setActive(this); showPage('seller-profile')">
+                    <span class="icon">👤</span>
+                    <span class="label">Seller Profile</span>
+                </button>
+            </div>
+
+            <div class="menu-group">
+                <p class="menu-title">System</p>
+                <button class="menu-btn" onclick="setActive(this); showPage('logout-seller')">
+                    <span class="icon">🚪</span>
+                    <span class="label">Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <main id="main-content" class="content">
+            <section id="seller-home" class="page active">
+                <h1>Seller Dashboard</h1>
+                <div class="card">
+                    <h3>Welcome back, Store Admin!</h3>
+                    <p style="margin-top:10px;">Here is your store summary for today:</p>
+                </div>
+
+                <div class="shop-grid" style="margin-top:20px;">
+                    <div class="product-card">
+                        <h3>Total Products</h3>
+                        <p class="price" id="stat-products">4 Items</p>
+                    </div>
+                    <div class="product-card">
+                        <h3>Total Orders</h3>
+                        <p class="price">3 Orders</p>
+                    </div>
+                    <div class="product-card">
+                        <h3>Total Sales</h3>
+                        <p class="price">₱4,596.00</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="manage-products" class="page">
+                <h1>Manage Products</h1>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="seller-product-table">
+                            <tr>
+                                <td>Wireless Earbuds</td>
+                                <td>Electronics</td>
+                                <td>₱1,299.00</td>
+                                <td>15</td>
+                                <td>
+                                    <button class="action-btn" onclick="editProduct(this)">Edit</button>
+                                    <button class="delete-btn" onclick="deleteProduct(this)">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Graphic Hoodie</td>
+                                <td>Apparel</td>
+                                <td>₱899.00</td>
+                                <td>20</td>
+                                <td>
+                                    <button class="action-btn" onclick="editProduct(this)">Edit</button>
+                                    <button class="delete-btn" onclick="deleteProduct(this)">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Leather Wallet</td>
+                                <td>Accessories</td>
+                                <td>₱599.00</td>
+                                <td>10</td>
+                                <td>
+                                    <button class="action-btn" onclick="editProduct(this)">Edit</button>
+                                    <button class="delete-btn" onclick="deleteProduct(this)">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Bluetooth Speaker</td>
+                                <td>Electronics</td>
+                                <td>₱1,799.00</td>
+                                <td>8</td>
+                                <td>
+                                    <button class="action-btn" onclick="editProduct(this)">Edit</button>
+                                    <button class="delete-btn" onclick="deleteProduct(this)">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="add-product" class="page">
+                <h1>Add New Product</h1>
+                <form class="card-form" onsubmit="addNewProduct(event)">
+                    <label for="prod-name">Product Name</label>
+                    <input type="text" id="prod-name" placeholder="Enter product name" required>
+
+                    <label for="prod-cat">Category</label>
+                    <select id="prod-cat" required>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Apparel">Apparel</option>
+                        <option value="Accessories">Accessories</option>
+                    </select>
+
+                    <label for="prod-price">Price (₱)</label>
+                    <input type="number" id="prod-price" placeholder="e.g. 999" required>
+
+                    <label for="prod-stock">Stock Quantity</label>
+                    <input type="number" id="prod-stock" placeholder="e.g. 10" required>
+
+                    <button type="submit">Save Product</button>
+                </form>
+            </section>
+
+            <section id="seller-orders" class="page">
+                <h1>Customer Orders</h1>
+                <div class="order-card">
+                    <h3>Order #10231</h3>
+                    <p>Customer: <strong>Chad Gabriel Ynocando</strong></p>
+                    <p>Items: Wireless Earbuds x1</p>
+                    <p>Total: ₱1,299.00</p>
+                    <p>Status: <strong>Delivered</strong></p>
+                </div>
+                <div class="order-card">
+                    <h3>Order #10245</h3>
+                    <p>Customer: <strong>Sample Customer</strong></p>
+                    <p>Items: Graphic Hoodie x1</p>
+                    <p>Total: ₱899.00</p>
+                    <p>Status: <strong>Shipped</strong></p>
+                </div>
+            </section>
+
+            <section id="seller-profile" class="page">
+                <h1>Seller Profile</h1>
+                <div class="card">
+                    <p><strong>Seller Name:</strong> Admin Seller</p>
+                    <p style="margin-top:10px;"><strong>Store Name:</strong> Shop Leblanc Official</p>
+                    <p style="margin-top:10px;"><strong>Email:</strong> seller@example.com</p>
+                    <p style="margin-top:10px;"><strong>Contact:</strong> +63 912 345 6789</p>
+                </div>
+            </section>
+
+            <section id="logout-seller" class="page">
+                <h1>Logout</h1>
+                <div class="card">
+                    <p>Are you sure you want to log out of the Seller Panel?</p>
+                    <button class="action-btn" style="margin-top:20px;" onclick="sellerLogout()">Logout</button>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="seller.js"></script>
+</body>
+</html>

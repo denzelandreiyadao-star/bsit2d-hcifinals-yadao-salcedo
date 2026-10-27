@@ -1,0 +1,395 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #111;
+    color: white;
+}
+
+.container {
+    height: 100vh;
+}
+
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: #111;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 20px;
+    z-index: 20;
+    border-bottom: 2px solid #222;
+}
+
+.menu-toggle {
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 8px 12px;
+    transition: 0.2s;
+}
+
+.menu-toggle:hover {
+    color: #e60012;
+}
+
+.brand {
+    background: black;
+    color: white;
+    padding: 6px 14px;
+    font-weight: bold;
+    transform: skew(-5deg);
+    border: 2px solid #e60012;
+}
+
+.brand h2 {
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 60px;
+    height: calc(100vh - 60px);
+    width: 240px;
+    background: #e60012;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transform: skew(-3deg);
+    box-shadow: 6px 0 black;
+    transition: width 0.3s ease;
+    z-index: 10;
+    overflow-y: auto;
+}
+
+.sidebar.collapsed {
+    width: 85px;
+    padding: 15px 5px;
+}
+
+.menu-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 5px;
+}
+
+.menu-title {
+    color: black;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-left: 5px;
+    transform: skew(3deg);
+}
+
+.sidebar.collapsed .menu-title {
+    display: none;
+}
+
+.sidebar button {
+    background: black;
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transform: skew(3deg);
+    transition: 0.2s;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.sidebar button:hover {
+    background: white;
+    color: #e60012;
+}
+
+.sidebar button.active {
+    background: white;
+    color: #e60012;
+    font-weight: bold;
+    border-left: 6px solid black;
+}
+
+.sidebar.collapsed button {
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 4px;
+    justify-content: center;
+    text-align: center;
+}
+
+.sidebar.collapsed button .icon {
+    font-size: 18px;
+}
+
+.sidebar.collapsed button .label {
+    font-size: 10px;
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.1;
+}
+
+.content {
+    margin-left: 260px;
+    padding: 40px;
+    padding-top: 80px;
+    transition: margin-left 0.3s ease;
+}
+
+.content.collapsed {
+    margin-left: 105px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.content h1 {
+    font-size: 45px;
+    color: #e60012;
+    margin-bottom: 20px;
+}
+
+.card {
+    margin-top: 20px;
+    background: white;
+    color: black;
+    padding: 25px;
+    width: 400px;
+    border-left: 8px solid #e60012;
+    box-shadow: 8px 8px black;
+}
+
+.card-form {
+    background: white;
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 30px;
+    border-left: 8px solid #e60012;
+    box-shadow: 8px 8px black;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    color: black;
+}
+
+.card-form input,
+.card-form select {
+    padding: 12px;
+    border: 3px solid black;
+    font-size: 16px;
+    outline: none;
+}
+
+.card-form label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+}
+
+.card-form label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    padding: 0;
+}
+
+.card-form button {
+    background: #e60012;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.card-form button:hover {
+    background: black;
+}
+
+.table-container {
+    overflow-x: auto;
+    max-width: 800px;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    color: black;
+    box-shadow: 8px 8px black;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border: 2px solid black;
+}
+
+th {
+    background: #e60012;
+    color: white;
+    font-size: 18px;
+}
+
+.delete-btn {
+    background: black;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.delete-btn:hover {
+    background: #e60012;
+}
+
+.category-list {
+    list-style: none;
+    max-width: 500px;
+}
+
+.category-list li {
+    background: white;
+    color: black;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-left: 6px solid #e60012;
+    box-shadow: 5px 5px black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+    max-width: 1000px;
+}
+
+.product-card {
+    background: white;
+    color: black;
+    padding: 20px;
+    border: 4px solid black;
+    box-shadow: 6px 6px #e60012;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card h3 {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.product-card .category-badge {
+    display: inline-block;
+    background: black;
+    color: white;
+    padding: 3px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    width: fit-content;
+}
+
+.product-card .price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #e60012;
+    margin-bottom: 15px;
+}
+
+.product-card .card-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn {
+    background: #e60012;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    flex: 1;
+}
+
+.action-btn:hover {
+    background: black;
+}
+
+.icon-btn {
+    background: black;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.icon-btn:hover {
+    background: #e60012;
+}
+
+.checkout-box {
+    background: white;
+    color: black;
+    padding: 20px;
+    max-width: 800px;
+    border: 4px solid black;
+    box-shadow: 8px 8px black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-card {
+    background: white;
+    color: black;
+    padding: 20px;
+    max-width: 800px;
+    border-left: 8px solid #e60012;
+    box-shadow: 6px 6px black;
+    margin-bottom: 20px;
+}
+
+.order-card h3 {
+    margin-bottom: 10px;
+    color: #e60012;
+}
+
+.order-card ul {
+    margin-left: 20px;
+    margin-top: 10px;
+}

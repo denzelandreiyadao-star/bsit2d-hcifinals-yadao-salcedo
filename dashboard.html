@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard - Shop Leblanc</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="container">
+        <header class="top-bar">
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <div class="brand">
+                <h2>Shop Leblanc</h2>
+            </div>
+        </header>
+
+        <aside id="sidebar" class="sidebar">
+            <div class="menu-group">
+                <p class="menu-title">Main Navigation</p>
+                <button class="menu-btn active" onclick="setActive(this); showPage('home')">
+                    <span class="icon">🏠</span>
+                    <span class="label">Home</span>
+                </button>
+                <button class="menu-btn" onclick="setActive(this); showPage('products')">
+                    <span class="icon">📦</span>
+                    <span class="label">Products</span>
+                </button>
+                <button class="menu-btn" onclick="setActive(this); showPage('categories')">
+                    <span class="icon">🏷️</span>
+                    <span class="label">Categories</span>
+                </button>
+            </div>
+
+            <div class="menu-group">
+                <p class="menu-title">Shopping</p>
+                <button class="menu-btn" onclick="setActive(this); showPage('cart')">
+                    <span class="icon">🛒</span>
+                    <span class="label">Cart (<span id="cart-count">1</span>)</span>
+                </button>
+                <button class="menu-btn" onclick="setActive(this); showPage('orders')">
+                    <span class="icon">📜</span>
+                    <span class="label">My Orders</span>
+                </button>
+                <button class="menu-btn" onclick="setActive(this); showPage('wishlist')">
+                    <span class="icon">❤️</span>
+                    <span class="label">Wishlist (<span id="wishlist-count">3</span>)</span>
+                </button>
+            </div>
+
+            <div class="menu-group">
+                <p class="menu-title">Account</p>
+                <button class="menu-btn" onclick="setActive(this); showPage('profile')">
+                    <span class="icon">👤</span>
+                    <span class="label">Profile</span>
+                </button>
+                <button class="menu-btn" onclick="setActive(this); showPage('settings')">
+                    <span class="icon">⚙</span>
+                    <span class="label">Settings</span>
+                </button>
+            </div>
+
+            <div class="menu-group">
+                <p class="menu-title">System</p>
+                <button class="menu-btn" onclick="setActive(this); showPage('logout')">
+                    <span class="icon">🚪</span>
+                    <span class="label">Logout</span>
+                </button>
+            </div>
+        </aside>
+       
+        <main id="main-content" class="content">
+            <section id="home" class="page active">
+                <h1>Home</h1>
+                <div class="card">
+                    <h3 style="margin-bottom:10px;">Welcome back, Shopper!</h3>
+                    <p>Shop Leblanc is a simple online store where you can browse products, add your favorites to a wishlist, keep track of your cart, and review your past orders — all in one place.</p>
+                </div>
+
+                <p class="menu-title" style="margin-top:30px; margin-bottom:10px; color:#e60012; font-size:14px;">Featured Products</p>
+                <div class="shop-grid">
+                    <div class="product-card">
+                        <div>
+                            <span class="category-badge">Electronics</span>
+                            <h3>Wireless Earbuds</h3>
+                            <p class="price">₱1,299.00</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn" onclick="addToCart('Wireless Earbuds', 1299.00)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div>
+                            <span class="category-badge">Apparel</span>
+                            <h3>Graphic Hoodie</h3>
+                            <p class="price">₱899.00</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn" onclick="addToCart('Graphic Hoodie', 899.00)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div>
+                            <span class="category-badge">Accessories</span>
+                            <h3>Leather Wallet</h3>
+                            <p class="price">₱599.00</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn" onclick="addToCart('Leather Wallet', 599.00)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+         
+            <section id="products" class="page">
+                <h1>Products</h1>
+                <div id="shop-grid" class="shop-grid">
+                    <div class="product-card">
+                        <div>
+                            <span class="category-badge">Electronics</span>
+                            <h3>Wireless Earbuds</h3>
+                            <p class="price">₱1,299.00</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn" onclick="addToCart('Wireless Earbuds', 1299.00)">Add to Cart</button>
+                            <button class="icon-btn" onclick="addToWishlist('Wireless Earbuds', 1299.00)">❤</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div>
+                            <span class="category-badge">Apparel</span>
+                            <h3>Graphic Hoodie</h3>
+                            <p class="price">₱899.00</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn" onclick="addToCart('Graphic Hoodie', 899.00)">Add to Cart</button>
+                            <button class="icon-btn" onclick="addToWishlist('Graphic Hoodie', 899.00)">❤</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div>
+                            <span class="category-badge">Accessories</span>
+                            <h3>Leather Wallet</h3>
+                            <p class="price">₱599.00</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn" onclick="addToCart('Leather Wallet', 599.00)">Add to Cart</button>
+                            <button class="icon-btn" onclick="addToWishlist('Leather Wallet', 599.00)">❤</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div>
+                            <span class="category-badge">Electronics</span>
+                            <h3>Bluetooth Speaker</h3>
+                            <p class="price">₱1,799.00</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn" onclick="addToCart('Bluetooth Speaker', 1799.00)">Add to Cart</button>
+                            <button class="icon-btn" onclick="addToWishlist('Bluetooth Speaker', 1799.00)">❤</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+         
+            <section id="categories" class="page">
+                <h1>Categories</h1>
+                <ul class="category-list">
+                    <li>
+                        <div>
+                            <strong>Electronics</strong>
+                            <p style="font-weight:normal; margin-top:4px;">Gadgets, earbuds, speakers, and other electronic devices.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <strong>Apparel</strong>
+                            <p style="font-weight:normal; margin-top:4px;">Shirts, hoodies, and everyday clothing essentials.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <strong>Accessories</strong>
+                            <p style="font-weight:normal; margin-top:4px;">Wallets, bags, and small items to complete your look.</p>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+       
+            <section id="cart" class="page">
+                <h1>Cart</h1>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Qty</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cart-list">
+                            <tr>
+                                <td>Wireless Earbuds</td>
+                                <td>1</td>
+                                <td>₱1,299.00</td>
+                                <td><button class="delete-btn" onclick="removeFromCart(this, 1299.00)">Remove</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="checkout-box">
+                    <p>Total: <strong id="cart-total">₱1,299.00</strong></p>
+                    <button class="action-btn" onclick="checkout()">Checkout</button>
+                </div>
+            </section>
+
+            <section id="orders" class="page">
+                <h1>My Orders</h1>
+                <div id="orders-list">
+                    <div class="order-card">
+                        <h3>Order #10231</h3>
+                        <p>Status: <strong>Delivered</strong></p>
+                        <p>Total: ₱1,299.00</p>
+                        <ul>
+                            <li>Wireless Earbuds x1</li>
+                        </ul>
+                    </div>
+                    <div class="order-card">
+                        <h3>Order #10245</h3>
+                        <p>Status: <strong>Shipped</strong></p>
+                        <p>Total: ₱899.00</p>
+                        <ul>
+                            <li>Graphic Hoodie x1</li>
+                        </ul>
+                    </div>
+                    <div class="order-card">
+                        <h3>Order #10260</h3>
+                        <p>Status: <strong>Processing</strong></p>
+                        <p>Total: ₱2,398.00</p>
+                        <ul>
+                            <li>Bluetooth Speaker x1</li>
+                            <li>Leather Wallet x1</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="wishlist" class="page">
+                <h1>Wishlist</h1>
+                <div id="wishlist-grid" class="shop-grid">
+                    <div class="product-card">
+                        <div>
+                            <span class="category-badge">Apparel</span>
+                            <h3>Graphic Hoodie</h3>
+                            <p>Comfortable everyday cotton hoodie with custom artwork print.</p>
+                            <p class="price">₱899.00</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn" onclick="moveToCart('Graphic Hoodie', 899.00, this)">Move to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div>
+                            <span class="category-badge">Accessories</span>
+                            <h3>Leather Wallet</h3>
+                            <p>Genuine leather bifold wallet with sleek card slots.</p>
+                            <p class="price">₱599.00</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn" onclick="moveToCart('Leather Wallet', 599.00, this)">Move to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div>
+                            <span class="category-badge">Electronics</span>
+                            <h3>Bluetooth Speaker</h3>
+                            <p>Portable wireless speaker delivering deep bass and high clarity.</p>
+                            <p class="price">₱1,799.00</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn" onclick="moveToCart('Bluetooth Speaker', 1799.00, this)">Move to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="profile" class="page">
+                <h1>Profile</h1>
+                <div class="card">
+                    <p><strong>Name:</strong> Chad Gabriel Ynocando</p>
+                    <p style="margin-top:10px;"><strong>Email:</strong> gabriel.ynocando@tau.edu.ph</p>
+                    <p style="margin-top:10px;"><strong>Course:</strong> BS Information Technology</p>
+                    <p style="margin-top:10px;"><strong>Year Level:</strong> 1st Year</p>
+                </div>
+            </section>
+
+            <section id="settings" class="page">
+                <h1>Settings</h1>
+                <div class="card-form">
+                    <p class="menu-title" style="color:#e60012;">Account Settings</p>
+                    <label><input type="checkbox" checked> Allow account recovery via email</label>
+                    <label><input type="checkbox"> Show my profile to other shoppers</label>
+
+                    <p class="menu-title" style="color:#e60012; margin-top:15px;">Privacy Settings</p>
+                    <label><input type="checkbox" checked> Save my order history</label>
+                    <label><input type="checkbox"> Share activity for personalized ads</label>
+
+                    <p class="menu-title" style="color:#e60012; margin-top:15px;">Notification Settings</p>
+                    <label><input type="checkbox" checked> Email me about order updates</label>
+                    <label><input type="checkbox" checked> Notify me about promotions</label>
+
+                    <button type="button" onclick="saveSettings()">Save Settings</button>
+                </div>
+            </section>
+
+            <section id="logout" class="page">
+                <h1>Logout</h1>
+                <div class="card">
+                    <p>You are about to log out of your Shop Leblanc account.</p>
+                    <button class="action-btn" style="margin-top:20px;" onclick="logout()">Logout</button>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="dashboard.js"></script>
+</body>
+</html>
